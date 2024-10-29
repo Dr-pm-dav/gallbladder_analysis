@@ -1,7 +1,7 @@
 # Create docs/source/conf.py
 # Configuration file for the Sphinx documentation builder
 project = 'Gallbladder Analysis'
-copyright = '2023, Your Name'
+copyright = '2024, SDWYates'
 author = 'Your Name'
 release = '1.0.0'
 
