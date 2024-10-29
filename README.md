@@ -1,11 +1,11 @@
-# gallbladder_analysis
+# Gallbladder Analysis
 Capstone project for MICA DAV MPS program
 
 # Features
-Web Scraping
-Data Processing
-Analysis
-Dashboard
+* Web Scraping - choose your own hospitals or other data sources
+* Data Processing
+* Analysis
+* Dashboard
 
 # Data Structure
 Raw Data
