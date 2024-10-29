@@ -127,3 +127,24 @@ Sequence 2: "Success Rate Reveal"
 - Duration: 1.5 seconds
 - Style: Circular progress with percentage counter
 
+
+
+# Canva Animation Settings
+# For each data point:
+    # Entrance:
+    # - fade duration: 0.3s
+    # - scale from 90% to 100%
+    # - opacity from 0 to 100%
+    # Number Animations:
+    # - counter duration: 2s
+    # - easing: ease-out
+    # - decimal places: 0 for whole numbers; 1 for percentages
+    # Chart Animations:
+    # - bar growth: 1.5s
+    # - pie segment: 1s / segment
+    # - line graph: 2s path drawing
+    # Transitions:
+    # - slide duration: 0.7s
+    # - blur amount: 5 pixels
+    # - direction: left to right
+
