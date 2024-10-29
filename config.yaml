@@ -1,6 +1,6 @@
 # Create config.yaml
 # Application Settings
-app:
+app: Gallbladder Analyzer
   name: Gallbladder Analysis
   version: 1.0.0
   debug: true
@@ -17,7 +17,7 @@ data_sources:
     max_results: 1000
 
   hospitals:
-    base_url: https://example-hospital-api.com
+    base_url: #https://example-hospital-api.com#
     endpoints:
       - surgery_stats
       - patient_outcomes
