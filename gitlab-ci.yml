@@ -1,0 +1,57 @@
+# Create .gitlab-ci.yml for GitLab CI/CD
+image: python:3.10
+
+stages:
+  - test
+  - lint
+  - build
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
+
+cache:
+  paths:
+    - .pip-cache/
+    - venv/
+
+before_script:
+  - python -V
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -r requirements.txt
+  - pip install -r requirements-dev.txt
+
+test:
+  stage: test
+  script:
+    - pytest tests/ --cov=gallbladder_analysis --cov-report=xml
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+
+lint:
+  stage: lint
+  script:
+    - black --check .
+    - flake8 .
+    - mypy .
+
+build:
+  stage: build
+  script:
+    - python setup.py sdist bdist_wheel
+  artifacts:
+    paths:
+      - dist/
+
+deploy:
+  stage: deploy
+  script:
+    - pip install twine
+    - TWINE_PASSWORD=${PYPI_PASSWORD} TWINE_USERNAME=${PYPI_USERNAME} python -m twine upload dist/*
+  only:
+    - main

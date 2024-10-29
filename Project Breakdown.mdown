@@ -1,0 +1,761 @@
+## Setup and Installation
+
+# Clone the repository
+```bash
+git clone https://github.com/yourusername/gallbladder_analysis.git
+cd gallbladder_analysis
+
+python -m venv venv
+source venv/bin/activate  
+
+pip install -r requirements.txt
+```
+
+# Collect Data
+```bash
+python src/scraper.py
+```
+
+# Process Data
+```bash
+python src/data_processor.py
+```
+
+# Analyze Data
+```bash
+python src/analyzer.py
+```
+
+# Dashboard Visualizations
+```bash
+python src/dashboard_and_report.py
+```
+
+# Features
+Web Scraping
+Data Processing
+Analysis
+Dashboard
+
+# Data Structure
+Raw Data
+	pubmed_data.csv: Research papers and studies
+	hospital_data.csv: Hospital surgery statistics
+	medical_statistics.csv: General medical statistics
+	
+Processed Data
+	pubmed_processed.csv
+	hospital_processed.csv
+	statistics_processed.csv	
+	
+# Contribution
+	Fork the repository
+	Create feature branch (git checkout -b feature/AmazingFeature)
+	Commit the changes (git commit -m 'Add some AmazingFeature')
+	Push to the branch (git push origin feature/AmazingFeature)
+	Open a Pull Request
+	
+# License
+	MIT License
+	
+# Create directory structure
+```bash
+mkdir -p gallbladder_analysis/data/{raw_data,processed_data}
+mkdir -p gallbladder_analysis/src
+touch gallbladder_analysis/src/__init__.py
+```
+
+# Copy python files into src directory
+scraper.py
+data_processor.py
+analyzer.py
+dashboard_and_report.py
+
+# Create empty __init__.py
+# Version information
+__version__ = '1.0.0'
+
+# Import main components
+from .scraper import GallbladderDataScraper
+from .data_processor import GallbladderDataProcessor
+from .analyzer import GallbladderAnalyzer
+from .dashboard_and_report import GallbladderDashboard
+
+# Export main classes
+__all__ = [
+    'GallbladderDataScraper',
+    'GallbladderDataProcessor',
+    'GallbladderAnalyzer',
+    'GallbladderDashboard'
+]
+
+# Create setup.py
+from setuptools import setup, find_packages
+
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+with open("requirements.txt", "r", encoding="utf-8") as fh:
+    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+
+setup(
+    name="gallbladder-analysis",
+    version="1.0.0",
+    author="Your Name",
+    author_email="your.email@example.com",
+    description="A comprehensive gallbladder surgery analysis toolkit",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/yourusername/gallbladder_analysis",
+    packages=find_packages(),
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Healthcare Industry",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    ],
+    python_requires=">=3.8",
+    install_requires=requirements,
+    entry_points={
+        "console_scripts": [
+            "gallbladder-scrape=gallbladder_analysis.cli:scrape",
+            "gallbladder-process=gallbladder_analysis.cli:process",
+            "gallbladder-analyze=gallbladder_analysis.cli:analyze",
+            "gallbladder-dashboard=gallbladder_analysis.cli:dashboard",
+        ],
+    },
+    include_package_data=True,
+)
+
+# Create .env for environment variables
+```bash
+# API Keys and Credentials
+PUBMED_API_KEY=your_pubmed_api_key
+HOSPITAL_API_KEY=your_hospital_api_key
+
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=gallbladder_db
+DB_USER=admin
+DB_PASSWORD=your_password
+
+# Scraping Configuration
+MAX_RETRIES=3
+RATE_LIMIT_DELAY=1.0
+USER_AGENT=GallbladderAnalysis/1.0
+
+# Analysis Configuration
+CLUSTER_COUNT=3
+SIGNIFICANCE_LEVEL=0.05
+
+# Dashboard Configuration
+DASH_DEBUG=True
+DASH_PORT=8050	
+```
+
+# Create config.yaml
+```yaml
+# Application Settings
+app:
+  name: Gallbladder Analysis
+  version: 1.0.0
+  debug: true
+  log_level: INFO
+
+# Data Sources
+data_sources:
+  pubmed:
+    base_url: https://pubmed.ncbi.nlm.nih.gov
+    search_terms:
+      - gallbladder surgery
+      - cholecystectomy
+      - laparoscopic cholecystectomy
+    max_results: 1000
+
+  hospitals:
+    base_url: https://example-hospital-api.com
+    endpoints:
+      - surgery_stats
+      - patient_outcomes
+    regions:
+      - North
+      - South
+      - East
+      - West
+
+# Data Processing
+processing:
+  clean_data:
+    remove_duplicates: true
+    handle_missing: mean
+    outlier_threshold: 3.0
+  
+  feature_engineering:
+    create_time_features: true
+    normalize_numeric: true
+    encode_categorical: true
+
+# Analysis
+analysis:
+  temporal:
+    seasonality_period: 12
+    trend_analysis: true
+    
+  geographical:
+    region_comparison: true
+    spatial_clustering: true
+    
+  statistical:
+    correlation_threshold: 0.7
+    significance_level: 0.05
+    
+  clustering:
+    algorithm: kmeans
+    n_clusters: 3
+    random_state: 42
+
+# Dashboard
+dashboard:
+  theme: light
+  default_view: temporal
+  update_interval: 3600
+  charts:
+    temporal:
+      height: 400
+      width: 800
+    geographical:
+      height: 500
+      width: 700
+    correlation:
+      height: 400
+      width: 400
+    cluster:
+      height: 500
+      width: 500
+
+# Reporting
+reporting:
+  format: pdf
+  template: default
+  sections:
+    - executive_summary
+    - methodology
+    - results
+    - conclusions
+  charts_per_page: 2
+```
+
+# Create pyproject.toml for packaging
+```toml
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+```
+
+# Create .gitignore file
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+data/raw_data/*
+data/processed_data/*
+!data/raw_data/.gitkeep
+!data/processed_data/.gitkeep
+*.log
+.env
+```
+
+# Create MANIFEST.in
+include README.md
+include LICENSE
+include requirements.txt
+include config.yaml
+recursive-include gallbladder_analysis/data *
+recursive-include gallbladder_analysis/templates *
+
+# Create tox.ini for testing
+```ini
+[tox]
+envlist = py38, py39, py310
+isolated_build = True
+
+[testenv]
+deps =
+    pytest
+    pytest-cov
+    black
+    flake8
+    mypy
+commands =
+    black --check .
+    flake8 .
+    mypy .
+    pytest --cov=gallbladder_analysis tests/
+```
+
+# Updated directory
+gallbladder_analysis/
+├── .env
+├── .gitignore
+├── config.yaml
+├── MANIFEST.in
+├── pyproject.toml
+├── README.md
+├── requirements.txt
+├── setup.py
+├── tox.ini
+├── data/
+│   ├── raw_data/
+│   └── processed_data/
+├── src/
+│   ├── __init__.py
+│   ├── scraper.py
+│   ├── data_processor.py
+│   ├── analyzer.py
+│   └── dashboard_and_report.py
+└── tests/
+    ├── __init__.py
+    ├── test_scraper.py
+    ├── test_processor.py
+    ├── test_analyzer.py
+    └── test_dashboard.py
+	
+# To install package in development mode
+```bash
+pip install -e .
+```
+
+# To build and distribute the package
+```bash
+python setup.py sdist bdist_wheel
+```
+
+# CI/CD Pipeline
+
+# Workflow actions for GitHub 
+## .github/workflows/ci.yml
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, '3.10']
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    
+    - name: Run tests
+      run: |
+        pytest tests/ --cov=gallbladder_analysis --cov-report=xml
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: true
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install black flake8 mypy
+    
+    - name: Run linters
+      run: |
+        black --check .
+        flake8 .
+        mypy .
+
+  build:
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+    
+    - name: Build package
+      run: python -m build
+    
+    - name: Check package
+      run: twine check dist/*
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+    
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        python -m build
+        twine upload dist/*
+```
+
+# Create .gitlab-ci.yml for GitLab CI/CD
+```yaml
+image: python:3.10
+
+stages:
+  - test
+  - lint
+  - build
+  - deploy
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.pip-cache"
+
+cache:
+  paths:
+    - .pip-cache/
+    - venv/
+
+before_script:
+  - python -V
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -r requirements.txt
+  - pip install -r requirements-dev.txt
+
+test:
+  stage: test
+  script:
+    - pytest tests/ --cov=gallbladder_analysis --cov-report=xml
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+
+lint:
+  stage: lint
+  script:
+    - black --check .
+    - flake8 .
+    - mypy .
+
+build:
+  stage: build
+  script:
+    - python setup.py sdist bdist_wheel
+  artifacts:
+    paths:
+      - dist/
+
+deploy:
+  stage: deploy
+  script:
+    - pip install twine
+    - TWINE_PASSWORD=${PYPI_PASSWORD} TWINE_USERNAME=${PYPI_USERNAME} python -m twine upload dist/*
+  only:
+    - main
+```
+
+# Create docs/ directory wtih Sphinx
+```bash 
+mkdir -p docs/{source/_static,source/_templates}
+```
+
+# Create docs/source/conf.py
+# Configuration file for the Sphinx documentation builder.
+```python
+project = 'Gallbladder Analysis'
+copyright = '2023, Your Name'
+author = 'Your Name'
+release = '1.0.0'
+
+# Extensions
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.githubpages',
+    'sphinx_rtd_theme',
+]
+
+# Theme
+html_theme = 'sphinx_rtd_theme'
+html_static_path = ['_static']
+templates_path = ['_templates']
+
+# Other settings
+exclude_patterns = []
+language = 'en'
+```
+
+# Create docs/source/index.rst
+```rst
+Welcome to Gallbladder Analysis Documentation
+===========================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   installation
+   usage
+   api
+   contributing
+   changelog
+
+Introduction
+------------
+
+The Gallbladder Analysis project is a comprehensive toolkit for analyzing gallbladder surgery data.
+It includes components for data collection, processing, analysis, and visualization.
+
+Quick Start
+----------
+
+Installation
+^^^^^^^^^^^
+
+.. code-block:: bash
+
+   pip install gallbladder-analysis
+
+Basic Usage
+^^^^^^^^^^
+
+.. code-block:: python
+
+   from gallbladder_analysis import GallbladderAnalyzer
+
+   analyzer = GallbladderAnalyzer()
+   analyzer.run_analysis()
+
+Features
+--------
+
+* Web scraping of medical data
+* Data processing and cleaning
+* Statistical analysis
+* Interactive dashboard
+* PDF report generation
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+```
+
+# Create docs/source/api.rst
+```rst
+API Reference
+============
+
+Scraper
+-------
+
+.. automodule:: gallbladder_analysis.scraper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Data Processor
+-------------
+
+.. automodule:: gallbladder_analysis.data_processor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Analyzer
+--------
+
+.. automodule:: gallbladder_analysis.analyzer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Dashboard
+---------
+
+.. automodule:: gallbladder_analysis.dashboard_and_report
+   :members:
+   :undoc-members:
+   :show-inheritance:
+```
+
+# Create docs/Makefile
+```makefile
+# Minimal makefile for Sphinx documentation
+
+SPHINXOPTS    ?=
+SPHINXBUILD   ?= sphinx-build
+SOURCEDIR     = source
+BUILDDIR      = build
+
+help:
+	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+.PHONY: help Makefile
+
+%: Makefile
+	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+```
+
+# Create requirements-dev.txt
+```txt
+# Testing
+pytest==7.4.0
+pytest-cov==4.1.0
+tox==4.6.4
+
+# Linting
+black==23.7.0
+flake8==6.1.0
+mypy==1.4.1
+
+# Documentation
+Sphinx==7.1.2
+sphinx-rtd-theme==1.2.2
+sphinx-autodoc-typehints==1.24.0
+
+# Build
+build==0.10.0
+twine==4.0.2
+```
+
+# Updated project structure
+gallbladder_analysis/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── docs/
+│   ├── Makefile
+│   └── source/
+│       ├── conf.py
+│       ├── index.rst
+│       ├── api.rst
+│       ├── _static/
+│       └── _templates/
+├── .gitlab-ci.yml
+├── requirements-dev.txt
+└── ... (previous files)	
+
+
+# Build documents
+```bash
+cd docs
+make html
+```
+Documents will be in docs/build/html/index.html

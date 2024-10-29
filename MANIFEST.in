@@ -1,0 +1,7 @@
+# Create MANIFEST.in
+include README.md
+include LICENSE
+include requirements.txt
+include config.yaml
+recursive-include gallbladder_analysis/data *
+recursive-include gallbladder_analysis/templates *

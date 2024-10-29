@@ -1,0 +1,19 @@
+# Create requirements-dev.txt
+# Testing
+pytest==7.4.0
+pytest-cov==4.1.0
+tox==4.6.4
+
+# Linting
+black==23.7.0
+flake8==6.1.0
+mypy==1.4.1
+
+# Documentation
+Sphinx==7.1.2
+sphinx-rtd-theme==1.2.2
+sphinx-autodoc-typehints==1.24.0
+
+# Build
+build==0.10.0
+twine==4.0.2

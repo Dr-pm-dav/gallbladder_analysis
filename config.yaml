@@ -1,0 +1,89 @@
+# Create config.yaml
+# Application Settings
+app:
+  name: Gallbladder Analysis
+  version: 1.0.0
+  debug: true
+  log_level: INFO
+
+# Data Sources
+data_sources:
+  pubmed:
+    base_url: https://pubmed.ncbi.nlm.nih.gov
+    search_terms:
+      - gallbladder surgery
+      - cholecystectomy
+      - laparoscopic cholecystectomy
+    max_results: 1000
+
+  hospitals:
+    base_url: https://example-hospital-api.com
+    endpoints:
+      - surgery_stats
+      - patient_outcomes
+    regions:
+      - North
+      - South
+      - East
+      - West
+
+# Data Processing
+processing:
+  clean_data:
+    remove_duplicates: true
+    handle_missing: mean
+    outlier_threshold: 3.0
+  
+  feature_engineering:
+    create_time_features: true
+    normalize_numeric: true
+    encode_categorical: true
+
+# Analysis
+analysis:
+  temporal:
+    seasonality_period: 12
+    trend_analysis: true
+    
+  geographical:
+    region_comparison: true
+    spatial_clustering: true
+    
+  statistical:
+    correlation_threshold: 0.7
+    significance_level: 0.05
+    
+  clustering:
+    algorithm: kmeans
+    n_clusters: 3
+    random_state: 42
+
+# Dashboard
+dashboard:
+  theme: light
+  default_view: temporal
+  update_interval: 3600
+  charts:
+    temporal:
+      height: 400
+      width: 800
+    geographical:
+      height: 500
+      width: 700
+    correlation:
+      height: 400
+      width: 400
+    cluster:
+      height: 500
+      width: 500
+
+# Reporting
+reporting:
+  format: pdf
+  template: default
+  sections:
+    - executive_summary
+    - methodology
+    - results
+    - conclusions
+  charts_per_page: 2
