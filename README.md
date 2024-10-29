@@ -9,11 +9,11 @@ Dashboard
 
 # Data Structure
 Raw Data
-	pubmed_data.csv: Research papers and studies
-	hospital_data.csv: Hospital surgery statistics
-	medical_statistics.csv: General medical statistics
+	- pubmed_data.csv: Research papers and studies
+	- hospital_data.csv: Hospital surgery statistics
+	- medical_statistics.csv: General medical statistics
 	
 Processed Data
-	pubmed_processed.csv
-	hospital_processed.csv
-	statistics_processed.csv	
+	- pubmed_processed.csv
+	- hospital_processed.csv
+	- statistics_processed.csv	
