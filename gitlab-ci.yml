@@ -1,5 +1,5 @@
 # Create .gitlab-ci.yml for GitLab CI/CD
-image: python:3.10
+image: python:3.13
 
 stages:
   - test
