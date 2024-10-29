@@ -2,7 +2,7 @@
 
 # Clone the repository
 ```bash
-git clone https://github.com/yourusername/gallbladder_analysis.git
+git clone https://github.com/Dr-pm-dav/gallbladder_analysis.git
 cd gallbladder_analysis
 
 python -m venv venv
@@ -106,7 +106,7 @@ setup(
     description="A comprehensive gallbladder surgery analysis toolkit",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/gallbladder_analysis",
+    url="https://github.com/Dr-pm-dav/gallbladder_analysis",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -117,9 +117,12 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: 3.13",
         "Topic :: Scientific/Engineering :: Medical Science Apps.",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.13",
     install_requires=requirements,
     entry_points={
         "console_scripts": [
@@ -162,7 +165,7 @@ DASH_PORT=8050
 # Create config.yaml
 ```yaml
 # Application Settings
-app:
+app: Gallbladder Analyzer
   name: Gallbladder Analysis
   version: 1.0.0
   debug: true
@@ -179,7 +182,7 @@ data_sources:
     max_results: 1000
 
   hospitals:
-    base_url: https://example-hospital-api.com
+    base_url: #https://example-hospital-api.com#
     endpoints:
       - surgery_stats
       - patient_outcomes
@@ -341,7 +344,7 @@ recursive-include gallbladder_analysis/templates *
 # Create tox.ini for testing
 ```ini
 [tox]
-envlist = py38, py39, py310
+envlist = py38, py39, py310, py311, py312, py313
 isolated_build = True
 
 [testenv]
@@ -413,7 +416,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9, '3.10']
+        python-version: [3.8, 3.9, 3.10, 3.11, 3.12, '3.13']
 
     steps:
     - uses: actions/checkout@v2
@@ -447,7 +450,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.10'
+        python-version: '3.13'
     
     - name: Install dependencies
       run: |
@@ -468,7 +471,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.10'
+        python-version: '3.13'
     
     - name: Install dependencies
       run: |
@@ -491,7 +494,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.10'
+        python-version: '3.13'
     
     - name: Install dependencies
       run: |
@@ -509,7 +512,7 @@ jobs:
 
 # Create .gitlab-ci.yml for GitLab CI/CD
 ```yaml
-image: python:3.10
+image: python:3.13
 
 stages:
   - test
@@ -576,7 +579,7 @@ mkdir -p docs/{source/_static,source/_templates}
 # Configuration file for the Sphinx documentation builder.
 ```python
 project = 'Gallbladder Analysis'
-copyright = '2023, Your Name'
+copyright = '2024, SDWYates'
 author = 'Your Name'
 release = '1.0.0'
 
